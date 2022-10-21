@@ -3,11 +3,12 @@ import { validateEmail } from '../../utils/helpers';
 
 function ContactForm() {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
-  
-  const [errorMessage, setErrorMessage] = useState('');
   const { name, email, message } = formState;
 
+  const [errorMessage, setErrorMessage] = useState('');
+
   function handleChange(e) {
+    // The name property of target refers to the name attribute of the form element.
     if (e.target.name === 'email') {
       const isValid = validateEmail(e.target.value);
       // isValid conditional statement
@@ -29,6 +30,7 @@ function ContactForm() {
     }
   };
 
+  // function to handle the submission of data
   function handleSubmit(e) {
     e.preventDefault();
     console.log(formState);

@@ -2,7 +2,9 @@ import React from 'react';
 import coverImage from "../../assets/cover/cover-image.jpg";
 
 function About() {
-  
+  // React components must always return a single parent JSX element. However, this element may have many children elements.
+  // can use <></> as a wrapper
+  // You can use the {} syntax in JSX to use JavaScript.
   return (
     <section className="my-5">
       <h1 id="about">Who am I?</h1>

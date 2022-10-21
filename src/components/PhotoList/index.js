@@ -1,10 +1,15 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
 import Modal from "../Modal";
 
 const PhotoList = ({ category }) => {
+  // useState() is a function that will always return an array. 
+  // first item is the value of the state
+  // second item is the setter, which allows you to set the state to something else
+  // Only call Hooks from React functions.
+  // Only call Hooks at the top level.
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // using useState here to set the default values for the array of photos
   const [photos] = useState([
     {
       name: 'Grocery aisle',
@@ -103,8 +108,10 @@ const PhotoList = ({ category }) => {
     },
   ]);
 
+  // filter photos that match current category
   const currentPhotos = photos.filter((photo) => photo.category === category);
 
+  // this manages the current photo state and makes this data accessible to the Modal component through props
   const [currentPhoto, setCurrentPhoto] = useState();
 
   const toggleModal = (image, i) => {
@@ -114,6 +121,8 @@ const PhotoList = ({ category }) => {
 
   return (
     <div>
+      {/* if isModalOpen is true, render in modal */}
+      {/* the onClose identifier is assigned the function toggleModal. */}
       {isModalOpen && (
         <Modal currentPhoto={currentPhoto} onClose={toggleModal} />
       )}
@@ -121,9 +130,11 @@ const PhotoList = ({ category }) => {
         {currentPhotos.map((image, i) => (
           <img
             src={require(`../../assets/small/${category}/${i}.jpg`)}
+            // This is used for accessibility user-assistance devices
             alt={image.name}
             className="img-thumbnail mx-1"
             onClick={() => toggleModal(image, i)}
+            // This value must be a unique string. The absence of this unique key value will cause an error message.
             key={image.name}
           />
         ))}
